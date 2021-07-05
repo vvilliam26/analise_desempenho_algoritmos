@@ -30,6 +30,7 @@ class KNN:
     def __init__(self, k, v, dataset):
         self.k = k
         self.v = v
+            #linha abaixo para inserir uma datasheet
         self.lista_vertices = dataset
 
     def get_viz(self, dt):
@@ -43,8 +44,8 @@ class KNN:
             lista_vertices.append(coord)
         self.lista_vertices = lista_vertices
 
-#Acha os vizinhos do item e retorna uma lista na qual a cabeça eh o index da coordenada no array de vertices
-#e a calda sao os elementos os quais este estah conectado (arestas)
+    #Acha os vizinhos do item e retorna uma lista na qual a cabeça eh o index da coordenada no array de vertices
+    #e a calda sao os elementos os quais este estah conectado (arestas)
     def set_arestas(self):
         lista_arestas = list()
         for vertice in self.lista_vertices:
