@@ -36,3 +36,10 @@ from busca_em_largura import BFS
 # from knn import KNN
 # clf = KNN(v=5,k=2)
 # print(clf.gerar_coordenadas())
+
+#from dfs import DFS
+#test = DFS(clf.lista_arestas)
+#test.DFS(0, 2)
+
+
+
