@@ -66,3 +66,10 @@ class KNN:
     #     most_commom = Counter(k_nearest_labels).most_common(1)
     #     return most_commom[0][0]
 
+    #Printa o grafo por lista de adjacência e em ordem crescente de distancia
+    def grafo(self):
+        for aresta in self.lista_arestas:
+            print(f'{aresta[0]}:', end='    ')
+            calda = aresta[1:]
+            print(calda)
+            print('')

@@ -21,6 +21,7 @@ dataset = [[2.7810836,2.550537003],
 from knn import KNN
 clf = KNN(v=10, k=3, dataset = dataset)
 clf.set_arestas()
+clf.grafo()
 
 # row0 = dataset[0]
 # for row in dataset:
