@@ -21,10 +21,10 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-clf = KNN(v=20, k=3)
+clf = KNN(v=20, k=3, dataset = dataset)
 
-from busca_em_largura import BFS
-g = BFS(clf.graph)
+# from busca_em_largura import BFS
+# g = BFS(clf.graph)
 # g.addEdge(0, 2) 
 # g.addEdge(0, 3) 
 # g.addEdge(0, 4) 
@@ -35,7 +35,11 @@ g = BFS(clf.graph)
 # g.addEdge(3, 5) 
 # g.addEdge(4, 5) 
 # g.addEdge(5, 1)  
-print(g.bfs(7, 19))
+# print(g.bfs(5, 1))
 
-
+from dijkstra import DIJKSTRA
+djk = DIJKSTRA(clf.v, clf.graph)
+resultado = djk.dijkstra(5, 1)
+print(resultado.path)
+print(resultado.distance_sum)
 

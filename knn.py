@@ -1,5 +1,4 @@
 from math import sqrt
-from collections import Counter
 import random
 from collections import defaultdict
 
@@ -28,12 +27,12 @@ def get_vizinhos(k, coordenada_teste, coordenadas):
 
 class KNN:
 
-    def __init__(self, k, v):
+    def __init__(self, k, v, dataset):
         # self.k = k
-        # self.v = v
+        self.v = v
             #linha abaixo para inserir uma datasheet
-        # self.lista_vertices = dataset
-        self.gerar_coordenadas(v)
+        self.lista_vertices = dataset
+        # self.gerar_coordenadas(v)
         self.set_arestas(k)
         self.set_grafo()
 
@@ -61,22 +60,6 @@ class KNN:
         self.lista_arestas = lista_arestas
         # print(lista_arestas)
         
-    # def _predict(self, x):
-    #     distances = [euclidean_distance(x, x_train) for x_train in self.X_train]
-
-    #     k_indexes = np.argsort(distances)[:self.k]
-    #     k_nearest_labels = [self.y_train[i] for i in k_indexes]
-
-    #     most_commom = Counter(k_nearest_labels).most_common(1)
-    #     return most_commom[0][0]
-
-    #Printa o grafo por lista de adjacência e em ordem crescente de distancia
-    # def grafo(self):
-    #     for aresta in self.lista_arestas:
-    #         print(f'{aresta[0]}:', end='    ')
-    #         calda = aresta[1:]
-    #         print(calda)
-    #         print('')
 
     def set_grafo(self):
         self.graph = defaultdict(list)
