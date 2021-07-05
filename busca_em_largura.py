@@ -1,4 +1,3 @@
-from collections import defaultdict
 
 class BFS:
 
@@ -37,5 +36,5 @@ class BFS:
                 visited.append(vertice)
     
 
-    def addEdge(self,u,v): 
-        self.graph[u].append(v) 
+    # def addEdge(self,u,v): 
+    #     self.graph[u].append(v) 
