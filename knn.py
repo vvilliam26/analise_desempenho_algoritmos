@@ -40,7 +40,7 @@ class KNN:
     def gerar_coordenadas(self):
         lista_vertices = []
         for i in range(self.v):
-            coord = [random.random()*10, random.random()*10]
+            coord = [random.random()*self.v, random.random()*self.v]
             lista_vertices.append(coord)
         self.lista_vertices = lista_vertices
 
