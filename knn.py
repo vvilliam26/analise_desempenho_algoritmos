@@ -33,7 +33,7 @@ class KNN:
         # self.v = v
             #linha abaixo para inserir uma datasheet
         self.lista_vertices = dataset
-        # self.lista_vertices = self.gerar_coordenadas(v)
+        self.gerar_coordenadas(v)
         self.set_arestas(k)
         self.set_grafo()
 
@@ -84,5 +84,5 @@ class KNN:
         for vertice in self.lista_arestas:
             for u in range(len(vertice)-1):
                 self.graph[vertice[0]].append(vertice[u+1])
-        print (self.graph)
+        # print (self.graph)
     
