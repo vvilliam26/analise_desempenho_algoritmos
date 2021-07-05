@@ -20,8 +20,11 @@ dataset = [[2.7810836,2.550537003],
 
 from knn import KNN
 clf = KNN(v=10, k=3, dataset = dataset)
-clf.set_arestas()
-clf.grafo()
+# clf.set_arestas()
+# clf.grafo()
+
+from busca_em_largura import BFS
+# bfs = BFS(clf.lista_arestas)
 
 # row0 = dataset[0]
 # for row in dataset:
