@@ -21,35 +21,21 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-# clf = KNN(v=10, k=3, dataset = dataset)
-# clf.set_arestas()
-# clf.grafo()
+clf = KNN(v=20, k=3)
 
 from busca_em_largura import BFS
-g = BFS()
-g.addEdge(0, 2) 
-g.addEdge(0, 3) 
-g.addEdge(0, 4) 
-g.addEdge(1, 2) 
-g.addEdge(1, 4) 
-g.addEdge(2, 4)
-g.addEdge(3, 4) 
-g.addEdge(3, 5) 
-g.addEdge(4, 5) 
-g.addEdge(5, 1)  
-print(g.bfs(0, 1))
-
-
-# plt.plot(dataset, 'o', color = 'black')
-# plt.show()
-
-# from knn import KNN
-# clf = KNN(v=5,k=2)
-# print(clf.gerar_coordenadas())
-
-#from dfs import DFS
-#test = DFS(clf.lista_arestas)
-#test.DFS(0, 2)
+g = BFS(clf.graph)
+# g.addEdge(0, 2) 
+# g.addEdge(0, 3) 
+# g.addEdge(0, 4) 
+# g.addEdge(1, 2) 
+# g.addEdge(1, 4) 
+# g.addEdge(2, 4)
+# g.addEdge(3, 4) 
+# g.addEdge(3, 5) 
+# g.addEdge(4, 5) 
+# g.addEdge(5, 1)  
+print(g.bfs(7, 19))
 
 
 

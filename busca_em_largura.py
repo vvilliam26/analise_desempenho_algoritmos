@@ -6,8 +6,8 @@ class BFS:
     #     self.graph = grafo_knn
 
     #constroi a função que ira criar a lista 
-    def __init__(self): 
-        self.graph = defaultdict(list) 
+    def __init__(self, grafo_knn): 
+        self.graph = grafo_knn
 
     #recebe start e target
     def bfs(self, s, t):
