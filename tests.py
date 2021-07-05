@@ -46,3 +46,10 @@ print(g.bfs(0, 1))
 # from knn import KNN
 # clf = KNN(v=5,k=2)
 # print(clf.gerar_coordenadas())
+
+#from dfs import DFS
+#test = DFS(clf.lista_arestas)
+#test.DFS(0, 2)
+
+
+
