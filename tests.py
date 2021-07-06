@@ -36,21 +36,21 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 
 import igraph
 from knn import KNN
-clf = KNN(v=500, k=7)
+clf = KNN(v=10000, k=7)
 
 # leitura = open("./grafos/graph_500_7.pkl", "rb")
 # clf = pickle.load(leitura)
 
 # print(clf.graph)
-from a_estrela import A_ESTRELA
-a_s = A_ESTRELA(clf)
-path = a_s.a_estrela(335, 267)
+# from a_estrela import A_ESTRELA
+# a_s = A_ESTRELA(clf)
+# path = a_s.a_estrela(335, 267)
 
-a_file = open("./grafos/graph_5000_3.pkl", "wb")
+a_file = open("./grafos/graph_10000_7.pkl", "wb")
 pickle.dump(clf, a_file)
 a_file.close()
 
 
 # print(path)
-if(path != None):
-	desenha_grafo(clf, "drl", 10, path)
+# if(path != None):
+# 	desenha_grafo(clf, "drl", 10, path)
