@@ -1,5 +1,5 @@
 
-class DJK_ELEMENT:
+class A_ELEMENT:
     def __init__(self, start, distance) -> None:
         self.path = list()
         self.path.append(start)
