@@ -1,4 +1,7 @@
+import matplotlib.pyplot as plt
+plt.style.use('seaborn-whitegrid')
 import numpy as np
+import pickle
 
 # def distancia_euclidiana(x1, x2):
 #     distance = 0.0
@@ -19,32 +22,32 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-v=100
-clf = KNN(k=3, v=100)
-# clf.set_arestas()
-# clf.grafo()
+clf = KNN(v=15, k=3)
 
-from busca_em_largura import BFS
-# bfs = BFS(clf.lista_arestas)
+# from busca_em_largura import BFS
+# g = BFS(clf.graph)
+# g.addEdge(0, 2) 
+# g.addEdge(0, 3) 
+# g.addEdge(0, 4) 
+# g.addEdge(1, 2) 
+# g.addEdge(1, 4) 
+# g.addEdge(2, 4)
+# g.addEdge(3, 4) 
+# g.addEdge(3, 5) 
+# g.addEdge(4, 5) 
+# g.addEdge(5, 1)  
+# print(g.bfs(5, 1))
 
-# row0 = dataset[0]
-# for row in dataset:
-#     distance = euclidean_distance(row0, row)
-#     print(distance)
+# print(clf.graph)
+# from dijkstra import DIJKSTRA
+# djk = DIJKSTRA(clf.v, clf.graph, grafo_vertices= clf.lista_vertices)
+# djk.dijkstra(500, 1000)
 
+a_file = open("./graphs/graph.pkl", "wb")
+pickle.dump(clf, a_file)
+a_file.close()
 
-
-# from knn import KNN
-# clf = KNN(v=5,k=2)
-# print(clf.gerar_coordenadas())
-
-from dfs import DFS
-test = DFS(clf)
-test.DFS(67, 54)
-
-from best1st import Best1st
-buscaInformada = Best1st(clf)
-buscaInformada.bestFirstSearch(67, 54, v)
-
-
+leitura = open("./graphs/graph.pkl", "rb")
+bunda = pickle.load(leitura)
+print(bunda.k, bunda.v)
 
