@@ -19,7 +19,8 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-clf = KNN(v=10, k=3, dataset = dataset)
+v=10
+clf = KNN(k=3, dataset = dataset)
 # clf.set_arestas()
 # clf.grafo()
 
@@ -37,9 +38,13 @@ from busca_em_largura import BFS
 # clf = KNN(v=5,k=2)
 # print(clf.gerar_coordenadas())
 
-#from dfs import DFS
-#test = DFS(clf.lista_arestas)
-#test.DFS(0, 2)
+from dfs import DFS
+test = DFS(clf)
+test.DFS(5, 1)
+
+#from best1st import Best1st
+#buscaInformada = Best1st(clf)
+#buscaInformada.bestFirstSearch(5, 1, v)
 
 
 
