@@ -1,5 +1,8 @@
 from collections import defaultdict
+from math import sqrt
 
+def distancia_euclidiana(x1, x2):
+    return sqrt(((x1[0]-x2[0])**2+(x1[1]-x2[1])**2))
  
 class DFS:
     # Constructor
@@ -8,35 +11,38 @@ class DFS:
 
 
     def set_grafo(self, grafo_knn):
-        self.graph = defaultdict(list)
-        
-        for vertice in grafo_knn:
-            for u in range(len(vertice)-1):
-                self.graph[vertice[0]].append(vertice[u+1])
+        self.grafo = grafo_knn
  
     # function to add an edge to graph
  
     # A function used by DFS
-    def DFSUtil(self, v, target, visited, path):
+    def DFSUtil(self, v, target, visited, path, prev):
  
         # Mark the current node as visited
         # and print it
         visited.add(v)
 
-        #Insert currend node into path, will remove at the end
-        #of the function call
-        path.append(v)
+        if(prev!=None):
+            self.dist+=distancia_euclidiana(self.grafo.lista_vertices[prev], self.grafo.lista_vertices[v])
+            
         #print(v, end=' ')
         if(v == target):
+            path.append(v)
             return True
  
         # Recur for all the vertices
         # adjacent to this vertex
-        for neighbour in self.graph[v]:
+        for neighbour in self.grafo.graph[v]:
             if neighbour not in visited:
-                    if self.DFSUtil(neighbour, target, visited, path) == True:
-                        return True
-        path.pop()
+                prev = v
+                if self.DFSUtil(neighbour, target, visited, path, prev) == True:
+                    path.append(v)
+                    return True
+
+
+        if(self.dist>0):
+            self.dist -= distancia_euclidiana(self.grafo.lista_vertices[prev], self.grafo.lista_vertices[v])
+
         return False
  
     # The function to do DFS traversal. It uses
@@ -48,8 +54,13 @@ class DFS:
 
         #Lista que armazena o caminho atual
         path = list()
+        self.dist = 0.0
+        prev = None
         # Call the recursive helper function
         # to print DFS traversal
-        self.DFSUtil(v,target, visited, path)
-        if(len(path)>=1):
-            print(path)
+        if(self.DFSUtil(v,target, visited, path, prev)==True):
+            print(path[::-1])
+            print(self.dist)
+        else:
+            print("Erro, caminho nao encontrado")
+        
