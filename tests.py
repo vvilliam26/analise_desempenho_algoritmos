@@ -56,7 +56,7 @@ bestfs.bestFirstSearch(335, 267, clf.v)
 
 from busca_em_largura import BFS
 breadthfs = BFS(clf)
-breadthfs.bfs()
+breadthfs.bfs(335, 267)
 
 from dfs import DFS
 depthfs = DFS(clf)
