@@ -23,9 +23,9 @@ class A_ESTRELA:
 #Regra de heuristica
     def set_heuristica(self, target, start, node):
         #distancia do vertice em analise para o alvo
-        dist_target = distancia_euclidiana(self.vertices[target], self.vertices[node])
+        dist_target = distancia_euclidiana(self.grafo.lista_vertices[target], self.grafo.lista_vertices[node])
         #distancia do vertice analisado para o vertice pai
-        dist_s = distancia_euclidiana(self.vertices[start], self.vertices[node])
+        dist_s = distancia_euclidiana(self.grafo.lista_vertices[start], self.grafo.lista_vertices[node])
         #heuristca da soma de distancias euclidianas
         dist = dist_target + dist_s
         #retorno dos parametros
@@ -33,8 +33,8 @@ class A_ESTRELA:
         return dist
         
 
-    from a_element import A_ELEMENT
     def a_estrela(self, end, start):
+        path = list()
         distTotal = 0
         visited = [0]*self.v
         visited[start] = True
@@ -46,18 +46,23 @@ class A_ESTRELA:
             if(anterior!=None):
                 distTotal += distancia_euclidiana(self.grafo.lista_vertices[anterior], self.grafo.lista_vertices[vertice])
             # Mostrando o caminho de menor custo
-            print(vertice, end=" ")
+            path.append(vertice)
             if vertice == end:
                 break
             
             for viz in self.grafo.graph[vertice]:
                 if visited[viz] == False:
                     visited[viz] = True
-                    pq.put((self.set_heuristics(viz, end), viz))
+                    pq.put((self.set_heuristica(end, vertice, viz), viz))
             anterior = vertice
 
-        print()
-        print(distTotal)
+        if(vertice == end):
+            path.reverse()          
+            # print(path)
+            # print(distTotal)
+            return path
+        else:
+            print("Erro, caminho nao encontrado")
 
             
 

@@ -1,7 +1,8 @@
-import matplotlib.pyplot as plt
-plt.style.use('seaborn-whitegrid')
-import numpy as np
+# import matplotlib.pyplot as plt
+# plt.style.use('seaborn-whitegrid')
+from igraph import *
 import pickle
+
 
 # def distancia_euclidiana(x1, x2):
 #     distance = 0.0
@@ -9,6 +10,24 @@ import pickle
 #         distance += (x1[i] - x2[i])**2
 #     return np.sqrt(distance)
 
+
+def desenha_grafo(grafo, lyt, tamanho, path = None):
+	g = Graph(directed = False)
+
+	g.add_vertices(grafo.v)
+	for vertice in grafo.lista_arestas:
+		for i in range(len(vertice) - 1):
+			g.add_edges([(vertice[0], vertice[i+1])])
+
+	if(path != None):
+		for i in path:
+			g.vs[i]["color"] = "black"
+
+	labels = range(grafo.v)
+	plot(g, vertex_size = tamanho, vertex_labels = )
+	return g
+
+			
 
 dataset = [[2.7810836,2.550537003],
 	[1.465489372,2.362125076],
@@ -21,8 +40,9 @@ dataset = [[2.7810836,2.550537003],
 	[8.675418651,-0.242068655],
 	[7.673756466,3.508563011]]
 
+import igraph
 from knn import KNN
-clf = KNN(v=100, k=3)
+clf = KNN(v=50, k=7)
 
 # from busca_em_largura import BFS
 # g = BFS(clf.graph)
@@ -41,13 +61,14 @@ clf = KNN(v=100, k=3)
 # print(clf.graph)
 from a_estrela import A_ESTRELA
 a_s = A_ESTRELA(clf)
-a_s.a_estrela(5, 1)
+path = a_s.a_estrela(5, 1)
 
-# a_file = open("./graphs/graph.pkl", "wb")
+# a_file = open("./grafos/graph.pkl", "wb")
 # pickle.dump(clf, a_file)
 # a_file.close()
 
-# leitura = open("./graphs/graph.pkl", "rb")
-# bunda = pickle.load(leitura)
-# print(bunda.k, bunda.v)
+# leitura = open("./grafos/graph.pkl", "rb")
+# clf = pickle.load(leitura)
 
+print(path)
+desenha_grafo(clf, "drl", 10, path = path)

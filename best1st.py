@@ -42,8 +42,10 @@ class Best1st:
             anterior = vertice
 
         if(vertice == end):
+            path.reverse()
             print(path)
             print(distTotal)
+            return path
         else:
             print("Erro, caminho nao encontrado")
 
