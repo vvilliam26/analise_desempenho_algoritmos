@@ -15,10 +15,11 @@ class Best1st:
         self.grafo = (grafo_knn)
         
     #Calcula o F(v) para um dado vertice v (ja soma g(v) e h(v))
-    def set_heuristics(self, atual, end):
+    def heuristics(self, atual, end):
         return (distancia_euclidiana(self.grafo.lista_vertices[atual], self.grafo.lista_vertices[end]))
 
     def bestFirstSearch(self, start, end, n):
+        path = list()
         distTotal = 0
         visited = [0]*n
         visited[start] = True
@@ -30,15 +31,19 @@ class Best1st:
             if(anterior!=None):
                 distTotal += distancia_euclidiana(self.grafo.lista_vertices[anterior], self.grafo.lista_vertices[vertice])
             # Mostrando o caminho de menor custo
-            print(vertice, end=" ")
+            path.append(vertice)
             if vertice == end:
                 break
             
             for viz in self.grafo.graph[vertice]:
                 if visited[viz] == False:
                     visited[viz] = True
-                    pq.put((self.set_heuristics(viz, end), viz))
+                    pq.put((self.heuristics(viz, end), viz))
             anterior = vertice
 
-        print()
-        print(distTotal)
+        if(vertice == end):
+            print(path)
+            print(distTotal)
+        else:
+            print("Erro, caminho nao encontrado")
+

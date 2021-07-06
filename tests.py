@@ -19,8 +19,8 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-v=10
-clf = KNN(k=3, dataset = dataset)
+v=100
+clf = KNN(k=3, v=100)
 # clf.set_arestas()
 # clf.grafo()
 
@@ -40,11 +40,11 @@ from busca_em_largura import BFS
 
 from dfs import DFS
 test = DFS(clf)
-test.DFS(5, 1)
+test.DFS(67, 54)
 
-#from best1st import Best1st
-#buscaInformada = Best1st(clf)
-#buscaInformada.bestFirstSearch(5, 1, v)
+from best1st import Best1st
+buscaInformada = Best1st(clf)
+buscaInformada.bestFirstSearch(67, 54, v)
 
 
 
