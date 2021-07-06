@@ -1,4 +1,4 @@
-from djk_element import DJK_ELEMENT
+from a_element import A_ELEMENT
 from math import sqrt
 import math
 from collections import defaultdict
@@ -12,7 +12,7 @@ def distancia_euclidiana(x1, x2):
         distancia += (x1[i] - x2[i])**2
     return sqrt(distancia)
 
-class DIJKSTRA:
+class A_ESTRELA:
 
 #O grafo em modo de dicionário deve ser passado para inicializar o A*
     def __init__(self, v, grafo_arestas, grafo_vertices) -> None:
@@ -36,12 +36,12 @@ class DIJKSTRA:
         return heuristica
         
 
-    from djk_element import DJK_ELEMENT
-    def dijkstra(self,s, t):
+    from a_element import A_ELEMENT
+    def a_estrela(self,s, t):
         #vertice analisado ou start
         vertice = s
-        #djk element eh um objeto que armazena o caminho e a distancia
-        caminho = DJK_ELEMENT(vertice, 0)
+        #a element eh um objeto que armazena o caminho e a distancia
+        caminho = A_ELEMENT(vertice, 0)
         for i in range(self.v*100):
             vizinhos = self.graph[vertice]
             dist = self.INF

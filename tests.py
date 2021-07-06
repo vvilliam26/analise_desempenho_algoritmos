@@ -39,15 +39,15 @@ clf = KNN(v=15, k=3)
 # print(g.bfs(5, 1))
 
 # print(clf.graph)
-# from dijkstra import DIJKSTRA
-# djk = DIJKSTRA(clf.v, clf.graph, grafo_vertices= clf.lista_vertices)
-# djk.dijkstra(500, 1000)
+from a_estrela import A_ESTRELA
+a_s = A_ESTRELA(clf.v, clf.graph, grafo_vertices= clf.lista_vertices)
+a_s.a_estrela(5, 1)
 
-a_file = open("./graphs/graph.pkl", "wb")
-pickle.dump(clf, a_file)
-a_file.close()
+# a_file = open("./graphs/graph.pkl", "wb")
+# pickle.dump(clf, a_file)
+# a_file.close()
 
-leitura = open("./graphs/graph.pkl", "rb")
-bunda = pickle.load(leitura)
-print(bunda.k, bunda.v)
+# leitura = open("./graphs/graph.pkl", "rb")
+# bunda = pickle.load(leitura)
+# print(bunda.k, bunda.v)
 
