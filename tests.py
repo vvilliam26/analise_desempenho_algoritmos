@@ -34,21 +34,38 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 # 	[8.675418651,-0.242068655],
 # 	[7.673756466,3.508563011]]
 
-import igraph
-from knn import KNN
-clf = KNN(v=500, k=7)
+#import igraph
+#from knn import KNN
+#clf = KNN(v=500, k=7)
 
-# leitura = open("./grafos/graph_500_7.pkl", "rb")
-# clf = pickle.load(leitura)
+leitura = open("./grafos/graph_500_7.pkl", "rb")
+clf = pickle.load(leitura)
 
 # print(clf.graph)
 from a_estrela import A_ESTRELA
 a_s = A_ESTRELA(clf)
 path = a_s.a_estrela(335, 267)
 
-a_file = open("./grafos/graph_5000_3.pkl", "wb")
-pickle.dump(clf, a_file)
-a_file.close()
+from a_default import A_DEF
+a_d = A_DEF(clf)
+a_d.bestFirstSearch(335, 267, clf.v)
+
+from best1st import Best1st
+bestfs = Best1st(clf)
+bestfs.bestFirstSearch(335, 267, clf.v)
+
+from busca_em_largura import BFS
+breadthfs = BFS(clf)
+breadthfs.bfs()
+
+from dfs import DFS
+depthfs = DFS(clf)
+depthfs.DFS(335, 267)
+
+
+#a_file = open("./grafos/graph_5000_3.pkl", "wb")
+#pickle.dump(clf, a_file)
+#a_file.close()
 
 
 # print(path)
