@@ -19,12 +19,18 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 		for i in range(len(vertice) - 1):
 			g.add_edges([(vertice[0], vertice[i+1])])
 
+	g.vs["color"] = "blue"
+
 	if(path != None):
+		edges = g.es.select(_within=path)
 		for i in path:
-			g.vs[i]["color"] = "black"
+			g.vs[i]["color"] = "red"
+		for edge in edges:
+			edge["color"] = "red"
+
 
 	labels = range(grafo.v)
-	plot(g, vertex_size = tamanho, vertex_labels = )
+	plot(g, vertex_size = tamanho, vertex_label = labels)
 	return g
 
 			
@@ -71,4 +77,4 @@ path = a_s.a_estrela(5, 1)
 # clf = pickle.load(leitura)
 
 print(path)
-desenha_grafo(clf, "drl", 10, path = path)
+desenha_grafo(clf, "drl", 20, path = path)
