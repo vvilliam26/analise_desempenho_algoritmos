@@ -1,15 +1,5 @@
-# import matplotlib.pyplot as plt
-# plt.style.use('seaborn-whitegrid')
 from igraph import *
 import pickle
-
-
-# def distancia_euclidiana(x1, x2):
-#     distance = 0.0
-#     for i in range(len(x1) - 1):
-#         distance += (x1[i] - x2[i])**2
-#     return np.sqrt(distance)
-
 
 def desenha_grafo(grafo, lyt, tamanho, path = None):
 	g = Graph(directed = False)
