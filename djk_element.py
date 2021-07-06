@@ -10,3 +10,10 @@ class DJK_ELEMENT:
 
     def add_distance(self, distance):
         self.distance_sum += distance
+
+    def isVisitado(self, vertice):
+        for position in self.path:
+            # print(position, vertice)
+            if position == vertice:
+                return True
+        return False 

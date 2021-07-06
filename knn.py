@@ -27,12 +27,12 @@ def get_vizinhos(k, coordenada_teste, coordenadas):
 
 class KNN:
 
-    def __init__(self, k, v, dataset):
-        # self.k = k
+    def __init__(self, k, v):
+        self.k = k
         self.v = v
             #linha abaixo para inserir uma datasheet
-        self.lista_vertices = dataset
-        # self.gerar_coordenadas(v)
+        # self.lista_vertices = dataset
+        self.gerar_coordenadas(v)
         self.set_arestas(k)
         self.set_grafo()
 
