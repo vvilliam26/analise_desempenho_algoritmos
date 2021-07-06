@@ -22,7 +22,7 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-clf = KNN(v=15, k=3)
+clf = KNN(v=100, k=3)
 
 # from busca_em_largura import BFS
 # g = BFS(clf.graph)
@@ -40,7 +40,7 @@ clf = KNN(v=15, k=3)
 
 # print(clf.graph)
 from a_estrela import A_ESTRELA
-a_s = A_ESTRELA(clf.v, clf.graph, grafo_vertices= clf.lista_vertices)
+a_s = A_ESTRELA(clf)
 a_s.a_estrela(5, 1)
 
 # a_file = open("./graphs/graph.pkl", "wb")
