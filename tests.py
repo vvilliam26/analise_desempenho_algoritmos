@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 plt.style.use('seaborn-whitegrid')
 import numpy as np
+import pickle
 
 # def distancia_euclidiana(x1, x2):
 #     distance = 0.0
@@ -21,7 +22,7 @@ dataset = [[2.7810836,2.550537003],
 	[7.673756466,3.508563011]]
 
 from knn import KNN
-clf = KNN(v=20, k=3, dataset = dataset)
+clf = KNN(v=15, k=3)
 
 # from busca_em_largura import BFS
 # g = BFS(clf.graph)
@@ -37,9 +38,16 @@ clf = KNN(v=20, k=3, dataset = dataset)
 # g.addEdge(5, 1)  
 # print(g.bfs(5, 1))
 
-from dijkstra import DIJKSTRA
-djk = DIJKSTRA(clf.v, clf.graph)
-resultado = djk.dijkstra(5, 1)
-print(resultado.path)
-print(resultado.distance_sum)
+# print(clf.graph)
+# from dijkstra import DIJKSTRA
+# djk = DIJKSTRA(clf.v, clf.graph, grafo_vertices= clf.lista_vertices)
+# djk.dijkstra(500, 1000)
+
+a_file = open("./graphs/graph.pkl", "wb")
+pickle.dump(clf, a_file)
+a_file.close()
+
+leitura = open("./graphs/graph.pkl", "rb")
+bunda = pickle.load(leitura)
+print(bunda.k, bunda.v)
 
