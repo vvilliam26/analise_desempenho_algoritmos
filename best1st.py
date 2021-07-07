@@ -43,9 +43,9 @@ class Best1st:
 
         if(vertice == end):
             path.reverse()
-            print(path)
-            print(distTotal)
+            #print("Caminho Best: %s" %(path))
+            #print("Distancia Best: %s" % (distTotal))
             return path
-        else:
-            print("Erro, caminho nao encontrado")
+        #else:
+            #print("Erro, caminho nao encontrado")
 

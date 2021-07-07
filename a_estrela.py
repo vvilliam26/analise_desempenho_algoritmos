@@ -17,7 +17,6 @@ class A_ESTRELA:
     def __init__(self, grafo) -> None:
         #setando o infinito
         #numero de vertices
-        self.v = grafo.v
         self.grafo = grafo
 
 #Regra de heuristica
@@ -33,10 +32,10 @@ class A_ESTRELA:
         return dist
         
 
-    def a_estrela(self, end, start):
+    def a_estrela(self, start, end, n):
         path = list()
         distTotal = 0
-        visited = [0]*self.v
+        visited = [0]*n
         visited[start] = True
         pq = PriorityQueue()
         pq.put((0, start))
@@ -58,11 +57,11 @@ class A_ESTRELA:
 
         if(vertice == end):
             path.reverse()          
-            # print(path)
-            # print(distTotal)
+            #print("Caminho A*: %s" %(path))
+            #print("Distancia A*: %s" % (distTotal))
             return path
-        else:
-            print("Erro, caminho nao encontrado")
+        # else:
+        #     print("Erro, caminho nao encontrado")
 
             
 

@@ -1,8 +1,14 @@
 from collections import defaultdict
 from math import sqrt
+from sys import setrecursionlimit
+
+setrecursionlimit(500000)
 
 def distancia_euclidiana(x1, x2):
-    return sqrt(((x1[0]-x2[0])**2+(x1[1]-x2[1])**2))
+    sum = 0
+    for i in range (0,1):
+        sum+=(x1[i]+x2[i])**2
+    return sqrt(sum)
  
 class DFS:
     # Constructor
@@ -47,7 +53,7 @@ class DFS:
  
     # The function to do DFS traversal. It uses
     # recursive DFSUtil()
-    def DFS(self, v, target):
+    def DFS(self, start, end):
  
         # Create a set to store visited vertices
         visited = set()
@@ -58,9 +64,11 @@ class DFS:
         prev = None
         # Call the recursive helper function
         # to print DFS traversal
-        if(self.DFSUtil(v,target, visited, path, prev)==True):
-            print(path[::-1])
-            print(self.dist)
-        else:
-            print("Erro, caminho nao encontrado")
+        if(self.DFSUtil(start,end, visited, path, prev)==True):
+            path.reverse()
+            #print("Caminho DFS: %s" %(path))
+            #print("Distancia DFS: %s" % (self.dist))
+            return path
+        #else:
+            #print("Erro, caminho nao encontrado")
         

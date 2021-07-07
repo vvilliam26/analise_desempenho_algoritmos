@@ -1,5 +1,6 @@
 from igraph import *
 import pickle
+import random
 
 def desenha_grafo(grafo, lyt, tamanho, path = None):
 	g = Graph(directed = False)
@@ -10,6 +11,7 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 			g.add_edges([(vertice[0], vertice[i+1])])
 
 	g.vs["color"] = "blue"
+	g.vs["label_size"] = 9
 
 	if(path != None):
 		edges = g.es.select(_within=path)
@@ -20,7 +22,7 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 
 
 	labels = range(grafo.v)
-	plot(g, vertex_size = tamanho, vertex_label = labels)
+	plot(g, "./grafos/imagens/imagem.png" ,vertex_size = tamanho, vertex_label = labels)
 	return g
 
 # dataset = [[2.7810836,2.550537003],
@@ -38,29 +40,75 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 #from knn import KNN
 #clf = KNN(v=500, k=7)
 
-leitura = open("./grafos/graph_500_7.pkl", "rb")
+leitura = open("./grafos/graph_5000_7.pkl", "rb")
 clf = pickle.load(leitura)
 
 # print(clf.graph)
+
+import timeit
+
+from timeit import default_timer as timer
+
+
+
 from a_estrela import A_ESTRELA
-a_s = A_ESTRELA(clf)
-path = a_s.a_estrela(335, 267)
 
-from a_default import A_DEF
-a_d = A_DEF(clf)
-a_d.bestFirstSearch(335, 267, clf.v)
+mediaAS=0
+mediaAD=0
+mediab1=0
+mediabfs=0
+mediadfs=0
+for i in range(1, 1000):
+	start = random.randint(1, clf.v-1)
+	end = random.randint(1, clf.v-1)
+	a_s = A_ESTRELA(clf)
+	startT = timer()
+	a_s.a_estrela(end = end, start = start, n = clf.v)
+	endT = timer()
+	mediaAS+=endT-startT
+	# if(path != None):
+	# 	desenha_grafo(clf, "drl", 10, path)
 
-from best1st import Best1st
-bestfs = Best1st(clf)
-bestfs.bestFirstSearch(335, 267, clf.v)
+	from a_default import A_DEF
+	a_d = A_DEF(clf)
+	startT = timer()
+	a_d.bestFirstSearch(start, end, clf.v)
+	endT = timer()
+	mediaAD+=endT-startT
+	# if(path != None):
+	# 	desenha_grafo(clf, "drl", 10, path)
 
-from busca_em_largura import BFS
-breadthfs = BFS(clf)
-breadthfs.bfs(335, 267)
+	from best1st import Best1st
+	bestfs = Best1st(clf)
+	startT = timer()
+	bestfs.bestFirstSearch(start, end, clf.v)
+	endT = timer()
+	mediab1+=endT-startT
+	# if(path != None):
+	# 	desenha_grafo(clf, "drl", 10, path)
 
-from dfs import DFS
-depthfs = DFS(clf)
-depthfs.DFS(335, 267)
+	from busca_em_largura import BFS
+	breadthfs = BFS(clf)
+	startT = timer()
+	breadthfs.bfs(start, end)
+	endT = timer()
+	mediabfs+=endT-startT# if(path != None):
+	# 	desenha_grafo(clf, "drl", 10, path)
+
+	from dfs import DFS
+	depthfs = DFS(clf)
+	startT = timer()
+	depthfs.DFS(start, end)
+	endT = timer()
+	mediadfs+=endT-startT
+# if(path != None):
+# 	desenha_grafo(clf, "drl", 10, path)
+print(mediadfs)
+print(mediaAD)
+print(mediaAS)
+print(mediab1)
+print(mediabfs)
+
 
 
 #a_file = open("./grafos/graph_5000_3.pkl", "wb")
@@ -69,5 +117,7 @@ depthfs.DFS(335, 267)
 
 
 # print(path)
-if(path != None):
-	desenha_grafo(clf, "drl", 10, path)
+#if(path != None):
+desenha_grafo(clf, "drl", 10)
+print()
+print()

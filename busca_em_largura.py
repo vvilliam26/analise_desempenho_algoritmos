@@ -6,16 +6,16 @@ class BFS:
 
     #constroi a função que ira criar a lista 
     def __init__(self, grafo_knn): 
-        self.graph = grafo_knn
+        self.graph = grafo_knn.graph
 
     #recebe start e target
-    def bfs(self, s, t):
+    def bfs(self, start, end):
 
         visited = []
 
-        queue = [[s]]
+        queue = [[start]]
 
-        if s == t:
+        if start== end:
             return "Start = Target"
 
         while queue:
@@ -31,7 +31,9 @@ class BFS:
                     novo_caminho.append(vizinho)
                     queue.append(novo_caminho)
 
-                    if vizinho == t:
+                    if vizinho == end:
+                        #print("Caminho BFS: %s" %(novo_caminho))
+                        #print("Distancia BFS: %s")
                         return novo_caminho
                 visited.append(vertice)
     
