@@ -45,8 +45,6 @@ class A_DEF:
 
         if(vertice == end):
             path.reverse()
-            #print("Caminho A: %s" %(path))
-            #print("Distancia A: %s" % (distTotal))
+
             return path
         # else:
-        #     print("Erro, caminho nao encontrado")

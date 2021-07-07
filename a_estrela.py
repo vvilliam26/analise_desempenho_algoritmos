@@ -27,8 +27,7 @@ class A_ESTRELA:
         dist_s = distancia_euclidiana(self.grafo.lista_vertices[start], self.grafo.lista_vertices[node])
         #heuristca da soma de distancias euclidianas
         dist = dist_target + dist_s
-        #retorno dos parametros
-        # heuristica = [node, dist, dist_s]
+
         return dist
         
 
@@ -57,11 +56,9 @@ class A_ESTRELA:
 
         if(vertice == end):
             path.reverse()          
-            #print("Caminho A*: %s" %(path))
-            #print("Distancia A*: %s" % (distTotal))
+
             return path
-        # else:
-        #     print("Erro, caminho nao encontrado")
+
 
             
 

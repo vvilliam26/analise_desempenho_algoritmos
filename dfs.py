@@ -58,7 +58,7 @@ class DFS:
         # Create a set to store visited vertices
         visited = set()
 
-        #Lista que armazena o caminho atual
+        #List to store path
         path = list()
         self.dist = 0.0
         prev = None
@@ -66,9 +66,6 @@ class DFS:
         # to print DFS traversal
         if(self.DFSUtil(start,end, visited, path, prev)==True):
             path.reverse()
-            #print("Caminho DFS: %s" %(path))
-            #print("Distancia DFS: %s" % (self.dist))
             return path
-        #else:
-            #print("Erro, caminho nao encontrado")
+
         
