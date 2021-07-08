@@ -2,7 +2,7 @@ from collections import defaultdict
 from math import sqrt
 from sys import setrecursionlimit
 
-setrecursionlimit(500000)
+setrecursionlimit(500000)#Nao fazer isso pode ocasionar erro no algoritmo
 
 def distancia_euclidiana(x1, x2):
     sum = 0
@@ -11,7 +11,7 @@ def distancia_euclidiana(x1, x2):
     return sqrt(sum)
  
 class DFS:
-    # Constructor
+    # Construtor da classe, so pra receber o grafo msm
     def __init__(self, grafo_knn):
         self.set_grafo(grafo_knn)
 
@@ -19,53 +19,57 @@ class DFS:
     def set_grafo(self, grafo_knn):
         self.grafo = grafo_knn
  
-    # function to add an edge to graph
  
-    # A function used by DFS
-    def DFSUtil(self, v, target, visited, path, prev):
+    # Parte recursiva do algoritmo
+    def DFSUtil(self, v, end, visited, path, prev):
  
-        # Mark the current node as visited
-        # and print it
+        # Marca o no atual como visitado para nao ser visitado de novo
         visited.add(v)
 
+        #Soma a distancia do no atual ao anterior
+        #Se não for o caminho certo, subtrai no final
         if(prev!=None):
-            self.dist+=distancia_euclidiana(self.grafo.lista_vertices[prev], self.grafo.lista_vertices[v])
-            
-        #print(v, end=' ')
-        if(v == target):
+            self.dist+=distancia_euclidiana(self.grafo.lista_vertices[prev], 
+            self.grafo.lista_vertices[v])
+        
+        #Se v for o end, encerra dps de botar no path
+        if(v == end):
             path.append(v)
             return True
  
-        # Recur for all the vertices
-        # adjacent to this vertex
+        # Percorre recursivamente, indo sempre em profundidade nos nos
         for neighbour in self.grafo.graph[v]:
             if neighbour not in visited:
                 prev = v
-                if self.DFSUtil(neighbour, target, visited, path, prev) == True:
+                #Se o branch atual for um caminho, bota todos nos na path
+                #Sim, o path fica ao contrario, mas na hora de printar eu uso reverse
+                if self.DFSUtil(neighbour, end, visited, path, prev) == True:
                     path.append(v)
                     return True
 
-
+        #Caso nao seja o primeiro nó e não seja o caminho certo, 
+        #subtrai a distancia somada anteriormente
         if(self.dist>0):
             self.dist -= distancia_euclidiana(self.grafo.lista_vertices[prev], self.grafo.lista_vertices[v])
 
         return False
  
-    # The function to do DFS traversal. It uses
-    # recursive DFSUtil()
+    # Função que inicializa as vars e listas da funcao recursiva
     def DFS(self, start, end):
  
-        # Create a set to store visited vertices
+        # Cria um set de nos visitados, set facilita a verificação
         visited = set()
 
         #List to store path
         path = list()
         self.dist = 0.0
+
+        #No anterior, feito pra calcular a distancia
         prev = None
-        # Call the recursive helper function
-        # to print DFS traversal
+
+        # Chama a func recursiva e retorna o path
         if(self.DFSUtil(start,end, visited, path, prev)==True):
             path.reverse()
-            return path
+            return self.dist
 
         

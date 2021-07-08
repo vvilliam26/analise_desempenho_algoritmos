@@ -1,5 +1,5 @@
 from collections import defaultdict
-from math import sqrt
+from math import dist, sqrt
 from knn import KNN
 from queue import PriorityQueue
 
@@ -19,11 +19,14 @@ class A_DEF:
         return (distancia_euclidiana(self.grafo.lista_vertices[atual],
         self.grafo.lista_vertices[end])*10)+distancia_euclidiana(self.grafo.lista_vertices[start],
         self.grafo.lista_vertices[atual])
-
-    def bestFirstSearch(self, start, end, n):
+    
+    #O algoritmo usado aqui eh o mesmo da busca informada,
+    #em caso de duvida ve o algoritmo comentado la.
+    #A unica coisa que muda entre best 1st, A e A* eh a heuristica
+    def algoA(self, start, end):
         path = list()
         distTotal = 0
-        visited = [0]*n
+        visited = [0]*self.grafo.v
         visited[start] = True
         pq = PriorityQueue()
         pq.put((0, start))
@@ -46,5 +49,5 @@ class A_DEF:
         if(vertice == end):
             path.reverse()
 
-            return path
+            return distTotal
         # else:

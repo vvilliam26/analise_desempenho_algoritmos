@@ -31,7 +31,7 @@ class BFS:
                     if vizinho == end:
                         print("Caminho BFS: %s" %(novo_caminho))
 
-                        return novo_caminho
+                        #return distTotal
                 visited.append(vertice)
     
 

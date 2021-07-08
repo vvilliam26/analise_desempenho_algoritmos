@@ -30,11 +30,14 @@ class A_ESTRELA:
 
         return dist
         
+    #O algoritmo usado aqui eh o mesmo da busca informada,
+    #em caso de duvida ve o algoritmo comentado la.
+    #A unica coisa que muda entre best 1st, A e A* eh a heuristica
 
-    def a_estrela(self, start, end, n):
-        path = list()
+    #resolvi passar o path pro A* verificar se ha caminho, caso haja todos os outros algoritmos tambem encontram
+    def a_estrela(self, start, end, path):
         distTotal = 0
-        visited = [0]*n
+        visited = [0]*self.grafo.v
         visited[start] = True
         pq = PriorityQueue()
         pq.put((0, start))
@@ -55,9 +58,8 @@ class A_ESTRELA:
             anterior = vertice
 
         if(vertice == end):
-            path.reverse()          
-
-            return path
+            path.reverse()
+            return distTotal
 
 
             
