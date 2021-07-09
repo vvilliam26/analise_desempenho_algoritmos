@@ -71,6 +71,11 @@ while(contador>0):
 
 	# As funcoes retornam none quando nao ha caminho, entao as distancia so serao calculadas
 	#quando ha 
+
+	#Por algum motivo, algumas vezes que rodamos os testes, principalmente
+	#com v maior, da um erro em que todas as distancias no final
+	#printam 0.0, nao sabemos a causa nem a solucao, so
+	#rodar o codigo novamente ate funcionar
 	
 	#Testa A*
 	a_s = A_ESTRELA(clf)
