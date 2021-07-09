@@ -1,6 +1,15 @@
 from igraph import *
 import pickle
 import random
+from a_estrela import A_ESTRELA
+from a_default import A_DEF
+from best1st import Best1st
+from busca_em_largura import BFS
+from dfs import DFS
+
+
+
+
 
 #funcao que desenha o grafo, desenha tambem o caminho caso haja
 def desenha_grafo(grafo, lyt, tamanho, path = None):
@@ -11,34 +20,30 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 		for i in range(len(vertice) - 1):
 			g.add_edges([(vertice[0], vertice[i+1])])
 
-	g.vs["color"] = "blue"
-	g.vs["label_size"] = 9
+	g.vs["color"] = "blue" #define cor dos vertices nao percorridos
+	g.vs["label_size"] = 9 #tamanho das labels numericas
 
+	#destacar path
 	if(path != None):
 		edges = g.es.select(_within=path)
 		for i in path:
 			g.vs[i]["color"] = "red"
+			g.vs[i]["label"] = i
 		for edge in edges:
 			edge["color"] = "red"
 
 
-	labels = range(grafo.v)
-	plot(g, "./grafos/imagens/imagem.png" ,vertex_size = tamanho, vertex_label = labels)
+	# labels = range(grafo.v)
+	plot(g, "./grafos/imagens/imagem.png" ,vertex_size = tamanho)
 	return g
 
 
 #carrega o grafo, um grafo diferente para cada combinacao de valores de k e v
-leitura = open("./grafos/graph_10000_7.pkl", "rb")
+leitura = open("./grafos/graph_500_7.pkl", "rb")
 clf = pickle.load(leitura)
 
-
 import timeit
-
 from timeit import default_timer as timer
-
-
-
-from a_estrela import A_ESTRELA
 
 mediaAS=0
 mediaAD=0
@@ -68,7 +73,6 @@ while(contador>0):
 
 
 	#Testa A
-	from a_default import A_DEF
 	a_d = A_DEF(clf)
 
 	startT = timer()
@@ -80,7 +84,6 @@ while(contador>0):
 
 
 	#Testa best1st
-	from best1st import Best1st
 	bestfs = Best1st(clf)
 
 	startT = timer()
@@ -92,7 +95,6 @@ while(contador>0):
 
 
 	#Testa BFS
-	from busca_em_largura import BFS
 	breadthfs = BFS(clf)
 	startT = timer()
 	distanciaBFS = breadthfs.bfs(start, end)
@@ -101,7 +103,6 @@ while(contador>0):
 		mediabfs+=endT-startT
 
 	#Testa DFS
-	from dfs import DFS
 	depthfs = DFS(clf)
 	startT = timer()
 	distanciaDFS = depthfs.DFS(start, end)
@@ -127,13 +128,6 @@ print("Distancia B1st: %s" %(distanciaB1st))
 
 print("Tempo medio BFS: %s " %(mediabfs*numDeTestes)/1000)
 print("Distancia BFS: %s" %(distanciaBFS))
-
-
-
-
-
-
-
 
 
 print()
