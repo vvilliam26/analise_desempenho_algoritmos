@@ -27,7 +27,6 @@ class A_ESTRELA:
         dist_s = distancia_euclidiana(self.grafo.lista_vertices[start], self.grafo.lista_vertices[node])
         #heuristca da soma de distancias euclidianas
         dist = dist_target + dist_s
-
         return dist
         
     #O algoritmo usado aqui eh o mesmo da busca informada,
@@ -37,13 +36,13 @@ class A_ESTRELA:
     #resolvi passar o path pro A* verificar se ha caminho, caso haja todos os outros algoritmos tambem encontram
     def a_estrela(self, start, end, path):
         distTotal = 0
-        visited = [0]*self.grafo.v
+        visited = [0]*self.grafo.v #array de visitados
         visited[start] = True
-        pq = PriorityQueue()
+        pq = PriorityQueue() #Fila de prioridade
         pq.put((0, start))
         anterior = None
         while pq.empty() == False:
-            vertice = pq.get()[1]
+            vertice = pq.get()[1] 
             if(anterior!=None):
                 distTotal += distancia_euclidiana(self.grafo.lista_vertices[anterior], self.grafo.lista_vertices[vertice])
             # Mostrando o caminho de menor custo
