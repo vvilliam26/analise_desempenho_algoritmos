@@ -39,7 +39,7 @@ def desenha_grafo(grafo, lyt, tamanho, path = None):
 
 
 #carrega o grafo, um grafo diferente para cada combinacao de valores de k e v
-leitura = open("./grafos/graph_500_7.pkl", "rb")
+leitura = open("./grafos/graph_10000_7.pkl", "rb")
 clf = pickle.load(leitura)
 
 import timeit
@@ -50,6 +50,12 @@ mediaAD=0
 mediab1=0
 mediabfs=0
 mediadfs=0
+
+distAD = 0
+distAS = 0
+distDFS = 0
+distB1st = 0
+distBFS = 0
 numDeTestes= 20
 contador = numDeTestes
 while(contador>0):
@@ -63,11 +69,17 @@ while(contador>0):
 	#O bloco a seguir roda os testes e soma seu tempo de execucao
 	#(somente se houver um caminho valido)
 
+	# As funcoes retornam none quando nao ha caminho, entao as distancia so serao calculadas
+	#quando ha 
+	
 	#Testa A*
 	a_s = A_ESTRELA(clf)
 	startT = timer()
 	distanciaAS = a_s.a_estrela(start, end, path)
 	endT = timer()
+
+	if(distanciaAS!=None):
+		distAS += distanciaAS
 	if(path != None):
 		mediaAS+=endT-startT
 
@@ -78,6 +90,9 @@ while(contador>0):
 	startT = timer()
 	distanciaAD = a_d.algoA(start, end)
 	endT = timer()
+
+	if(distanciaAD!=None):
+		distAD += distanciaAD
 	
 	if(path != None):
 		mediaAD+=endT-startT
@@ -90,6 +105,9 @@ while(contador>0):
 	distanciaB1st = bestfs.bestFirstSearch(start, end)
 	endT = timer()
 
+	if(distanciaB1st!=None):
+		distB1st += distanciaB1st
+
 	if(path != None):
 		mediab1+=endT-startT
 
@@ -99,6 +117,10 @@ while(contador>0):
 	startT = timer()
 	distanciaBFS = breadthfs.bfs(start, end)
 	endT = timer()
+
+	if(distanciaBFS!=None):
+		distBFS += distanciaBFS
+
 	if(path != None):
 		mediabfs+=endT-startT
 
@@ -107,6 +129,10 @@ while(contador>0):
 	startT = timer()
 	distanciaDFS = depthfs.DFS(start, end)
 	endT = timer()
+
+	if(distanciaDFS!=None):
+		distDFS += distanciaDFS
+
 	if(path != None):
 		mediadfs+=endT-startT
 
@@ -114,20 +140,25 @@ while(contador>0):
 	if(path != None):
 		contador-=1
 
-print("Tempo medio DFS: %s" %(mediadfs*numDeTestes)/1000)
-print("Distancia DFS: %s" %(distanciaDFS))
+print("Tempo medio DFS: %s" %(mediadfs/numDeTestes*1000))
+print("Distancia DFS: %s" %(distDFS/numDeTestes))
+print()
 
-print("Tempo medio A: %s " %(mediaAD*numDeTestes)/1000)
-print("Distancia A: %s" %(distanciaAD))
+print("Tempo medio A: %s " %(mediaAD/numDeTestes*1000))
+print("Distancia A: %s" %(distAD/numDeTestes))
+print()
 
-print("Tempo medio A*: %s " %(mediaAS*numDeTestes)/1000)
-print("Distancia A*: %s" %(distanciaAS))
+print("Tempo medio A*: %s " %(mediaAS/numDeTestes*1000))
+print("Distancia A*: %s" %(distAS/numDeTestes))
+print()
 
-print("Tempo medio Best1st: %s " %(mediab1*numDeTestes)/1000)
-print("Distancia B1st: %s" %(distanciaB1st))
+print("Tempo medio Best1st: %s " %(mediab1/numDeTestes*1000))
+print("Distancia B1st: %s" %(distB1st/numDeTestes))
+print()
 
-print("Tempo medio BFS: %s " %(mediabfs*numDeTestes)/1000)
-print("Distancia BFS: %s" %(distanciaBFS))
+print("Tempo medio BFS: %s " %(mediabfs/numDeTestes*1000))
+print("Distancia BFS: %s" %(distBFS/numDeTestes))
+print()
 
 
 print()
